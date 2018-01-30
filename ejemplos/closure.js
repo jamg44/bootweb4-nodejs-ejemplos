@@ -13,6 +13,7 @@ function creaAgente(nombre) {
       console.log(`Hola soy ${nombre}`);
     }
   }
+  // que valor tiene this aquí?
 }
 
 const jones = creaAgente('Jones');
