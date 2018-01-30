@@ -12,8 +12,21 @@ function escribeTras2Segundos(texto, callback) {
   }, 2000);
 }
 
-for(let n = 0; n < 15; n++) {
-  escribeTras2Segundos('texto' + n, () => {
-
+// bucle asíncrono en serie
+// llamar a una función n veces en serie
+function serie(n, fn, callbackFinalizador) {
+  if (n == 0) {
+    // termino
+    callbackFinalizador();
+    return; // termina la ejecución del bucle
+  }
+  n = n - 1;
+  fn('texto' + n, () => {
+    // cuando termine, nos llamamos a nosotros mismos
+    serie(n, fn, callbackFinalizador);
   });
 }
+
+serie(5, escribeTras2Segundos, () => {
+  console.log('he terminado');
+});
