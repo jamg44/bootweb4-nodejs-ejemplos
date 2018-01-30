@@ -1,5 +1,5 @@
 'use strict';
-
+console.log(this);
 console.log('empiezo');
 
 // función que escribe un texto tras 2 segundos
@@ -13,20 +13,19 @@ function escribeTras2Segundos(texto, callback) {
 }
 
 // bucle asíncrono en serie
-// llamar a una función n veces en serie
-function serie(n, fn, callbackFinalizador) {
-  if (n == 0) {
+// llamar a una función con cada elemento de un array, en serie
+function serie(arr, fn, callbackFinalizador) {
+  if (arr.length == 0) {
     // termino
     callbackFinalizador();
     return; // termina la ejecución del bucle
   }
-  n = n - 1;
-  fn('texto' + n, () => { // fn es escribeTras2Segundos
+  fn('texto' + arr.shift(), () => {
     // cuando termine, nos llamamos a nosotros mismos
-    serie(n, fn, callbackFinalizador);
+    serie(arr, fn, callbackFinalizador);
   });
 }
 
-serie(5, escribeTras2Segundos, () => {
+serie([1,2,'hola',4,5], escribeTras2Segundos, () => {
   console.log('he terminado');
 });
