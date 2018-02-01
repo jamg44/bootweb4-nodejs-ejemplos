@@ -17,10 +17,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// middleware de estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
-  //console.log('peticion', req.method);
+
+  console.log('peticion', req.path);
+
   // o respondemos o llamamos a next (obligatoriamente)
   //res.send('hola caracola');
   next();
