@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+// cargamos librería de validaciones
+const { query, validationResult } = require('express-validator/check');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -23,7 +26,18 @@ router.get('/param/:id([0-9]+)/piso/:piso/puerta/:puerta(A|B|C)', (req, res, nex
   res.send('ok');
 });
 
-router.get('/enquerystring', (req, res, next) => {
+router.get('/enquerystring', [
+  query('age')
+    .isNumeric().withMessage('debería ser un número')
+    .custom((value) => {
+      if (value < 18) {
+        throw new Error('debe ser mayor de edad');
+      }
+      return true;
+    })
+  
+], (req, res, next) => {
+  validationResult(req).throw();
   console.log('req.query', req.query);
   const pelo = req.query.pelo;
   const sexo = req.query.sexo;
