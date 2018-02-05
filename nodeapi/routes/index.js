@@ -6,7 +6,22 @@ const { query, validationResult } = require('express-validator/check');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  //res.render('index', { title: 'Nodeapi' });
+
+  const segundo = (new Date()).getSeconds();
+
+  res.locals.valor = 123;
+  res.locals.texto = '<script>alert("hola, he conseguido inyectar codigo")</script>';
+  res.locals.condicion = {
+    segundo: segundo,
+    estado: segundo % 2 === 0
+  };
+  res.locals.users = [
+    { name: 'Smith', age: 20 },
+    { name: 'Thomas', age: 34 },
+    { name: 'Jones', age: 47 }
+  ];
+  res.render('index');
 });
 
 router.get('/paramenruta/:id', (req, res, next) => {
