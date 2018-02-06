@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
 
-  console.log('peticion', req.path);
+  //console.log('peticion', req.path);
 
   // o respondemos o llamamos a next (obligatoriamente)
   //res.send('hola caracola');

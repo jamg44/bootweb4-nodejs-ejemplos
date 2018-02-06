@@ -16,4 +16,24 @@ router.get('/', (req, res, next) => {
   });
 });
 
+router.post('/', (req, res, next) => {
+  console.log(req.body);
+
+  const data = req.body;
+  
+  // creamos documento de agente en memoria
+  const agente = new Agente(data);
+
+  // lo persistimos en la base de datos
+  agente.save((err, agenteGuardado) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.json({ success: true, result: agenteGuardado });
+  });
+
+  
+});
+
 module.exports = router;
