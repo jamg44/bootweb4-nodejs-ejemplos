@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// conectamos la base de datos
+require('./lib/connectMongoose');
+// cargamos los modelos para que mongoose los conozca
+require('./models/Agente');
+
 var app = express();
 
 // view engine setup
@@ -39,6 +44,11 @@ app.use(function(req, res, next) {
  */
 app.use('/',      require('./routes/index'));
 app.use('/users', require('./routes/users'));
+
+/**
+ * Middlewares de mi api
+ */
+app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
