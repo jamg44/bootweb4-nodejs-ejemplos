@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
 
   // si es una petición de API, respondemos con JSON
   if (isAPI(req)) {
-    res.json({ succes: false, error: err.message });
+    res.json({ success: false, error: err.message });
     return;
   }
 

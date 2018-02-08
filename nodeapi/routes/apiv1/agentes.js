@@ -36,8 +36,29 @@ router.get('/', async (req, res, next) => { // async convierte el resultado en u
 
   // Con async/await
   try {
-    const docs = await Agente.find().exec(); // si usamos await, la función donde estoy
-                                             // debe tener async
+
+    // recogemos parámetros de entrada
+    const name = req.query.name;
+    const age = req.query.age;
+    const skip = parseInt(req.query.skip);
+    const limit = parseInt(req.query.limit);
+    const sort = req.query.sort;
+    const fields = req.query.fields;
+
+    console.log(req.query)
+
+    const filtro = {};
+
+    if (typeof name !== 'undefined') { // si me piden filtrar por nombre...
+      filtro.name = name; // lo añado al filtro
+    }
+
+    if (typeof age !== 'undefined') {
+      filtro.age = age;
+    }
+
+    const docs = await Agente.listar(filtro, skip, limit, sort, fields); // si usamos await, la función donde estoy
+                                        // debe tener async
     
     res.json({ success: true, result: docs });  
   } catch(err) {
@@ -55,9 +76,9 @@ router.post('/', (req, res, next) => {
   
   // creamos documento de agente en memoria
   const agente = new Agente(data);
-
+  
   // lo persistimos en la base de datos
-  agente.save((err, agenteGuardado) => {
+  agente.save((err, agenteGuardado) => { // .save es método de instancia
     if (err) {
       next(err);
       return;
@@ -71,7 +92,7 @@ router.post('/', (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const _id = req.params.id;
-    await Agente.remove({_id: _id}).exec();
+    await Agente.remove({_id: _id}).exec(); // .remove es método estático
     res.json({ success: true });
   } catch(err) {
     next(err);
