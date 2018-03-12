@@ -8,11 +8,12 @@ const autoReload = env === 'development';
 const updateFiles = env === 'development';
 const syncFiles = env === 'development';
 
-module.exports = function() {
+module.exports = function(defaultLocale) {
+  defaultLocale = defaultLocale || 'en';
   i18n.configure({
     locales: ['en', 'es'],
     directory: path.join(__dirname, '../locales'),
-    defaultLocale: 'en',
+    defaultLocale: defaultLocale,
     autoReload: autoReload, // recarga locales si tienen cambios
     updateFiles: updateFiles, // crear ficheros de locale inexistentes
     syncFiles: syncFiles, // sincroniza nuevos literales en todos los locales
