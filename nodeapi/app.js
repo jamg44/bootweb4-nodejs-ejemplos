@@ -12,6 +12,17 @@ require('./models/Agente');
 
 var app = express();
 
+const i18n = require('./lib/i18nConfigure')();
+app.use(i18n.init);
+
+//i18n.setLocale('es');
+console.log(i18n.__('TEXT'));
+console.log(i18n.__('HELLO', 'Juan', 'España'));
+console.log(i18n.__('NAME_AND_AGE', {name: 'Javier', age: 33}));
+console.log(i18n.__({ phrase: 'TEXT', locale: 'es'})); // forzar un idioma
+console.log(i18n.__n('MOUSE', 1));
+console.log(i18n.__n('MOUSE', 2));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

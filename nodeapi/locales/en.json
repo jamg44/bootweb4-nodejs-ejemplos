@@ -1,0 +1,10 @@
+{
+	"TEXT": "This is a text",
+	"HELLO": "Hello %s, i'm from %s",
+	"NAME_AND_AGE": "My name is {{name}}, and i'm {{age}} years old",
+	"MOUSE": {
+		"one": "%s Mouse",
+		"other": "%s Mice"
+	},
+	"Welcome to": "Welcome to"
+}

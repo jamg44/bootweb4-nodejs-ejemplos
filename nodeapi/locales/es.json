@@ -1,0 +1,10 @@
+{
+	"TEXT": "Esto es un texto",
+	"HELLO": "Hola %s, nací en %s",
+	"NAME_AND_AGE": "Mi nombre es {{name}}, y tengo {{age}} años",
+	"MOUSE": {
+		"one": "%s Ratón",
+		"other": "%s Ratones"
+	},
+	"Welcome to": "Bienvenido a"
+}
