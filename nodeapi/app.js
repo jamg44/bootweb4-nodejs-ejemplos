@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 require('./lib/connectMongoose');
 // cargamos los modelos para que mongoose los conozca
 require('./models/Agente');
+require('./models/Usuario');
 
 var app = express();
 
@@ -51,13 +52,21 @@ app.use(function(req, res, next) {
   //next(new Error('se te ha olvidao poner el cif'));
 });
 
+const loginController = require('./routes/loginController');
+
 /**
  * Middlewares de mi aplicación web
  */
 app.use('/',      require('./routes/index'));
 app.use('/about', require('./routes/about'));
 app.use('/lang',  require('./routes/lang'));
+
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
+
 app.use('/users', require('./routes/users'));
+
+
 
 /**
  * Middlewares de mi api

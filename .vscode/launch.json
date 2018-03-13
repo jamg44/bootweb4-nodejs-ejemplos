@@ -10,6 +10,13 @@
       "request": "launch",
       "name": "Ejecutar calculadora",
       "program": "${workspaceFolder}/ejemplos/ejemplo_modulos/index.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Ejecutar installDB",
+      "program": "${workspaceFolder}/nodeapi/scripts/installDB"
     }
+    
   ]
 }

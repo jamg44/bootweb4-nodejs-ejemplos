@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "cluster": "node ./bin/cluster",
     "dev": "cross-env DEBUG=nodeapi:* nodemon ./bin/www",
-    "testScript": "node ./scripts/testScript"
+    "testScript": "node ./scripts/testScript",
+    "installDB": "node ./scripts/installDB"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
