@@ -17,8 +17,9 @@ module.exports = function(defaultLocale) {
     autoReload: autoReload, // recarga locales si tienen cambios
     updateFiles: updateFiles, // crear ficheros de locale inexistentes
     syncFiles: syncFiles, // sincroniza nuevos literales en todos los locales
-    queryParameter: 'lang'
+    queryParameter: 'lang',
     //objectNotation: true
+    cookie: 'nodeapi-lang' // usar locale de esta cookie
   });
 
   i18n.setLocale('en');

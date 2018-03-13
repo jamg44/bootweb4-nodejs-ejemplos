@@ -56,6 +56,7 @@ app.use(function(req, res, next) {
  */
 app.use('/',      require('./routes/index'));
 app.use('/about', require('./routes/about'));
+app.use('/lang',  require('./routes/lang'));
 app.use('/users', require('./routes/users'));
 
 /**
