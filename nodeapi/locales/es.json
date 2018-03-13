@@ -6,5 +6,12 @@
 		"one": "%s Ratón",
 		"other": "%s Ratones"
 	},
-	"Welcome to": "Bienvenido a"
+	"Welcome to": "Bienvenido a",
+	"HOME": {
+		"INJECTION": "HOME.INJECTION"
+	},
+	"hola, he conseguido inyectar codigo": "hola, he conseguido inyectar codigo",
+	"(C) 2018 by loquesea": "(C) 2018 by loquesea",
+	"HOME.HEADER.COPYRIGHT_NOTICE": "HOME.HEADER.COPYRIGHT_NOTICE",
+	"Hola": "Hola"
 }

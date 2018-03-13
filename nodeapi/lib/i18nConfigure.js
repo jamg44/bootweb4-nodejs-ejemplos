@@ -18,6 +18,7 @@ module.exports = function(defaultLocale) {
     updateFiles: updateFiles, // crear ficheros de locale inexistentes
     syncFiles: syncFiles, // sincroniza nuevos literales en todos los locales
     queryParameter: 'lang'
+    //objectNotation: true
   });
 
   i18n.setLocale('en');

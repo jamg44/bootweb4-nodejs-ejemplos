@@ -1,10 +1,14 @@
 {
-	"TEXT": "This is a text",
-	"HELLO": "Hello %s, i'm from %s",
-	"NAME_AND_AGE": "My name is {{name}}, and i'm {{age}} years old",
+	"HELLO": "HELLO",
+	"NAME_AND_AGE": "NAME_AND_AGE",
+	"TEXT": "TEXT",
 	"MOUSE": {
-		"one": "%s Mouse",
-		"other": "%s Mice"
+		"one": "MOUSE",
+		"other": "MOUSE"
 	},
-	"Welcome to": "Welcome to"
+	"hola, he conseguido inyectar codigo": "hola, he conseguido inyectar codigo",
+	"Welcome to": "Welcome to",
+	"(C) 2018 by loquesea": "(C) 2018 by loquesea",
+	"HOME.HEADER.COPYRIGHT_NOTICE": "HOME.HEADER.COPYRIGHT_NOTICE",
+	"Hola": "Hello"
 }

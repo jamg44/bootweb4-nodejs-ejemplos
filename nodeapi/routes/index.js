@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const i18n = require('../lib/i18nConfigure')();
 
 // cargamos librería de validaciones
 const { query, validationResult } = require('express-validator/check');
@@ -11,7 +12,7 @@ router.get('/', function(req, res, next) {
   const segundo = (new Date()).getSeconds();
 
   res.locals.valor = 123;
-  res.locals.texto = '<script>alert("hola, he conseguido inyectar codigo")</script>';
+  res.locals.texto = `<script>alert("${i18n.__('hola, he conseguido inyectar codigo')}")</script>`;
   res.locals.condicion = {
     segundo: segundo,
     estado: segundo % 2 === 0
