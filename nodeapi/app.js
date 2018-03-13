@@ -55,6 +55,7 @@ app.use(function(req, res, next) {
  * Middlewares de mi aplicación web
  */
 app.use('/',      require('./routes/index'));
+app.use('/about', require('./routes/about'));
 app.use('/users', require('./routes/users'));
 
 /**
