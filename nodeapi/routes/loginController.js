@@ -30,10 +30,24 @@ class LoginController {
     }
 
     // abcd1234 - admin
+    // dentro de la sesión apunto el _id del usuario, para saber que esta
+    // sesión está autenticada
     req.session.authUser = { _id: user._id };
 
     // usuario encontrado y validado
     res.redirect('/');
+  }
+
+  // GET /logout
+  logout(req, res, next) {
+    delete req.session.authUser; // borrar authUser de la sesion
+    req.session.regenerate(function(err) { // crear nueva sesión vacia
+      if (err) {
+        next(err);
+        return;
+      }
+      res.redirect('/');
+    })
   }
 }
 

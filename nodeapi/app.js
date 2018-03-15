@@ -53,7 +53,7 @@ app.use(session({
   secret: 'askjdahjdhakdhaskdas7dasd87asd89as7d89asd7a9s8dhjash',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // dos dias de inactividad
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true } // dos dias de inactividad
 }));
 
 /**
@@ -74,6 +74,7 @@ app.use(function(req, res, next) {
 const loginController = require('./routes/loginController');
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
+app.get('/logout', loginController.logout);
 
 app.use('/',      require('./routes/index'));
 app.use('/about', require('./routes/about'));
