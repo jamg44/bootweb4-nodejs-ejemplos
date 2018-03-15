@@ -6,9 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // conectamos la base de datos
-require('./lib/connectMongoose');
+const conn = require('./lib/connectMongoose');
 // cargamos los modelos para que mongoose los conozca
 require('./models/Agente');
 require('./models/Usuario');
@@ -53,7 +54,12 @@ app.use(session({
   secret: 'askjdahjdhakdhaskdas7dasd87asd89as7d89asd7a9s8dhjash',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true } // dos dias de inactividad
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true }, // dos dias de inactividad
+  store: new MongoStore({
+    // como conectarse a mi base de datos
+    // url: '...'
+    mongooseConnection: conn
+  })
 }));
 
 /**
