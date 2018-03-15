@@ -9,6 +9,8 @@ const { query, validationResult } = require('express-validator/check');
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Nodeapi' });
 
+  console.log(req.session.authUser);
+
   const segundo = (new Date()).getSeconds();
 
   res.locals.valor = 123;

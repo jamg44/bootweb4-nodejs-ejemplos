@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const session = require('express-session');
+
 // conectamos la base de datos
 require('./lib/connectMongoose');
 // cargamos los modelos para que mongoose los conozca
@@ -40,6 +42,20 @@ console.log(i18n.__({ phrase: 'TEXT', locale: 'es'})); // forzar un idioma
 console.log(i18n.__n('MOUSE', 1));
 console.log(i18n.__n('MOUSE', 2));
 
+/**
+ * Middlewares de mi api
+ */
+app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
+
+// middleware de control de sesiones
+app.use(session({
+  name: 'nodeapi-session',
+  secret: 'askjdahjdhakdhaskdas7dasd87asd89as7d89asd7a9s8dhjash',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // dos dias de inactividad
+}));
+
 app.use(function(req, res, next) {
 
   //console.log('peticion', req.path);
@@ -66,12 +82,6 @@ app.post('/login', loginController.post);
 
 app.use('/users', require('./routes/users'));
 
-
-
-/**
- * Middlewares de mi api
- */
-app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
