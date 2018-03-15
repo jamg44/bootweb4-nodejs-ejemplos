@@ -57,8 +57,8 @@ app.use(session({
   cookie: { maxAge: 2 * 24 * 60 * 60 * 1000, httpOnly: true }, // dos dias de inactividad
   store: new MongoStore({
     // como conectarse a mi base de datos
-    // url: '...'
-    mongooseConnection: conn
+    url: 'mongodb://localhost/cursonode' // fix issue https://github.com/jdesboeufs/connect-mongo/issues/277
+    // mongooseConnection: conn
   })
 }));
 
