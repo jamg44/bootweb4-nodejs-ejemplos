@@ -56,6 +56,9 @@ app.use(session({
   cookie: { maxAge: 2 * 24 * 60 * 60 * 1000 } // dos dias de inactividad
 }));
 
+/**
+ * Middlewares de mi aplicación web
+ */
 app.use(function(req, res, next) {
 
   //console.log('peticion', req.path);
@@ -69,16 +72,12 @@ app.use(function(req, res, next) {
 });
 
 const loginController = require('./routes/loginController');
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 
-/**
- * Middlewares de mi aplicación web
- */
 app.use('/',      require('./routes/index'));
 app.use('/about', require('./routes/about'));
 app.use('/lang',  require('./routes/lang'));
-
-app.get('/login', loginController.index);
-app.post('/login', loginController.post);
 
 app.use('/users', require('./routes/users'));
 

@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 const i18n = require('../lib/i18nConfigure')();
+const sessionAuth = require('../lib/sessionAuth');
 
 // cargamos librería de validaciones
 const { query, validationResult } = require('express-validator/check');
 
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', sessionAuth(), function(req, res, next) {
   //res.render('index', { title: 'Nodeapi' });
 
   console.log(req.session.authUser);
@@ -27,7 +29,7 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/paramenruta/:id', (req, res, next) => {
+router.get('/paramenruta/:id', sessionAuth(), (req, res, next) => {
   console.log('req.params', req.params);
   const id = req.params.id;
   res.send('ok');

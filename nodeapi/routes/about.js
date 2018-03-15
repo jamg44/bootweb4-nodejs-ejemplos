@@ -2,8 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
+const sessionAuth = require('../lib/sessionAuth');
 
-router.get('/', (req, res, next) => {
+router.get('/', sessionAuth(), (req, res, next) => {
   res.render('about');
 });
 
