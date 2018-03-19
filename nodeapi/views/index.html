@@ -8,6 +8,12 @@
 
     
     <p><%= __('Welcome to') %>  <%= title %></p>
+
+    <form action="/sendemail" method="POST">
+      <button type="submit"><%= __('Send email') %></button>
+    </form>
+
+
     <p><%= __n('MOUSE', 2) %></p>
     <p><%= __('(C) 2018 by loquesea') %></p>
     <!-- <p><%= __('HOME.HEADER.COPYRIGHT_NOTICE') %></p> -->

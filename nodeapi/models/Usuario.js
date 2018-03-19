@@ -13,21 +13,13 @@ const transport = nodemailer.createTransport({
   }
 });
 
-// transport.sendMail({
-//   to: 'jamg44@gmail.com',
-//   from: 'NodeAPI <admin@nodeapi.com>',
-//   subject: 'Compra confirmada',
-//   text: 'Tu compra esta confirmada'
-// }).then(() => {
-
-// });
-
 const usuarioSchema = mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
   password: String
 });
 
+// método estático
 usuarioSchema.statics.hashPassword = function(plain) {
   return new Promise((resolve, reject) => {
     bcrypt.hash(plain, 10, function(err, hash) {
@@ -40,8 +32,19 @@ usuarioSchema.statics.hashPassword = function(plain) {
   });
 }
 
-usuarioSchema.methods.sendMail = function() {
-  console.log('Enviando mail...');
+// método de instancia
+usuarioSchema.methods.sendMail = function(from, subject, text) {
+  // si el email es de desarrollo no lo mando, lo saco en el log
+  if (this.email.includes('@example.com')) {
+    console.log(`Enviando email a ${this.email} con asunto ${subject}.`);
+    return Promise.resolve();
+  } 
+  return transport.sendMail({
+    to: this.email,
+    from: from,
+    subject: subject,
+    text: text
+  });
 
 }
 

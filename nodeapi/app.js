@@ -12,7 +12,7 @@ const MongoStore = require('connect-mongo')(session);
 const conn = require('./lib/connectMongoose');
 // cargamos los modelos para que mongoose los conozca
 require('./models/Agente');
-require('./models/Usuario');
+const Usuario = require('./models/Usuario');
 
 var app = express();
 
@@ -61,6 +61,18 @@ app.use(session({
     // mongooseConnection: conn
   })
 }));
+
+app.use(async (req, res, next) => {
+  try {
+    // si el usuario está logado, cargamos en req.user el objeto de usuario desde la base de datos
+    // para que los siguientes middlewares lo puedan usar
+    req.user = req.session.authUser ? await Usuario.findById(req.session.authUser._id) : null;
+    next();
+  } catch(err) {
+    next(err);
+    return;
+  }
+});
 
 /**
  * Middlewares de mi aplicación web
