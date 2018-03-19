@@ -8,8 +8,8 @@ const nodemailer = require('nodemailer');
 const transport = nodemailer.createTransport({
   service: 'SendGrid',
   auth: {
-    user: 'user',
-    pass: 'clave'
+    user: process.env.SENDGRID_USER,
+    pass: process.env.SENDGRID_PASSWORD
   }
 });
 
