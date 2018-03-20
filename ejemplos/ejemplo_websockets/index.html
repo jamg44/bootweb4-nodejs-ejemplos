@@ -24,7 +24,20 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       $(function () {
-        
+        var socket = io();
+        // al pulsar Send
+        $('form').submit(function() {
+          // mandar mensaje al servidor
+          socket.emit('chat message', $('#m').val());
+          // limpiar la caja de texto
+          $('#m').val('');
+          return false;
+        });
+        // cuando recibamos un mensaje del servidor...
+        socket.on('chat message', function(msg) {
+          $('#messages').append($('<li>').text(msg)); // añado mensaje a la lista
+          window.scrollTo(0, document.body.scrollHeight);
+        });
       });
     </script>
   </body>
