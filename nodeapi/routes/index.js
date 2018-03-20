@@ -7,6 +7,8 @@ const Usuario = require('../models/Usuario');
 // cargamos librería de validaciones
 const { query, validationResult } = require('express-validator/check');
 
+// cargamos objeto de upload
+const upload = require('../lib/uploadConfig');
 
 /* GET home page. */
 router.get('/', sessionAuth(), function(req, res, next) {
@@ -38,6 +40,11 @@ router.post('/sendemail', async (req, res, next) => {
     next(err);
     return;
   }
+});
+
+router.post('/upload', upload.single('imagen'), (req, res, next) => {
+  console.log('upload:', req.file);
+  res.redirect('/');
 });
 
 router.get('/paramenruta/:id', sessionAuth(), (req, res, next) => {

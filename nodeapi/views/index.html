@@ -13,6 +13,10 @@
       <button type="submit"><%= __('Send email') %></button>
     </form>
 
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="imagen">
+      <button type="submit"><%= __('Send file') %></button>
+    </form>
 
     <p><%= __n('MOUSE', 2) %></p>
     <p><%= __('(C) 2018 by loquesea') %></p>
