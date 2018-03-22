@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+const jwtAuth = require('./lib/jwtAuth');
+
 // conectamos la base de datos
 const conn = require('./lib/connectMongoose');
 // cargamos los modelos para que mongoose los conozca
@@ -43,10 +45,13 @@ console.log(i18n.__({ phrase: 'TEXT', locale: 'es'})); // forzar un idioma
 console.log(i18n.__n('MOUSE', 1));
 console.log(i18n.__n('MOUSE', 2));
 
+const loginController = require('./routes/loginController');
+
 /**
  * Middlewares de mi api
  */
-app.use('/apiv1/agentes', require('./routes/apiv1/agentes'));
+app.use('/apiv1/agentes', jwtAuth(), require('./routes/apiv1/agentes'));
+app.use('/loginJWT', loginController.postLoginJWT);
 
 // middleware de control de sesiones
 app.use(session({
@@ -89,7 +94,6 @@ app.use(function(req, res, next) {
   //next(new Error('se te ha olvidao poner el cif'));
 });
 
-const loginController = require('./routes/loginController');
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
 app.get('/logout', loginController.logout);
