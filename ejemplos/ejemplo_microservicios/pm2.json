@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "service",
+      "script": "conversionService.js",
+      "watch": "conversionService.js"
+    },
+    {
+      "name": "client",
+      "script": "conversionClient.js",
+      "watch": "conversionClient.js"
+    }
+  ]
+}
