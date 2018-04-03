@@ -17,7 +17,7 @@ router.get('/', sessionAuth(), function(req, res, next) {
   const segundo = (new Date()).getSeconds();
 
   res.locals.valor = 123;
-  res.locals.texto = `<script>alert("${i18n.__('hola, he conseguido inyectar codigo')}")</script>`;
+  res.locals.texto = `<script>alert("${res.__('hola, he conseguido inyectar codigo')}")</script>`;
   res.locals.condicion = {
     segundo: segundo,
     estado: segundo % 2 === 0
